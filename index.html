@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Drill 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: lightcyan;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container text-center mt-5">
+        <div class="shown">
+            <h1>Electricity Consumption Classifier</h1>
+
+            <p>Enter your electricity usage (kWh) to see your category.</p>
+            <br><br>
+
+            <input type="number" id="kwh" placeholder="Enter kWh"><br><br>
+            <button onclick="compute()" class="button">Classify</button>
+
+            <h2 id="result" class="mt-4"></h2>
+
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+        function compute(){
+
+            let kWh = parseFloat(document.getElementById("kwh").value);
+            if (kWh < 0 || isNaN(kWh)){
+                alert("Please input a non-negative number.");
+                return;
+            }
+            let result = "";
+            let meaning = "";
+
+            if (kWh <= 100){
+                result = "Lifeline Consumer";
+                meaning = "Discounted electricity rates";
+            }else if (kWh <= 200){
+                result = "Low Consumption";
+                meaning = "Normal residential rate";
+            }else if (kWh <= 300){
+                result = "Average Consumption";
+                meaning = "Typical electricity usage";
+            }else if (kWh <= 500){
+                result = "High Consumption";
+                meaning = "Higher electricity usage";
+            }else {
+                result = "Very High Consumption";
+                meaning = "Heavy electricity users";
+            }
+
+            document.getElementById("result").innerHTML =
+                "Usage: " + kWh + " kWh <br>" +
+                "Result: " + result + "<br>" +
+                "Usage:" + meaning
+        }
+    </script>
+
+</body>
+</html>
